@@ -66,18 +66,12 @@ elseif (isset($query) && (($query=="text") || ($query=="all"))) {
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 		<style>
 			pre { padding: 0.5rem; border: 1px solid black; }
-			p,a {
-				font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-				line-height: 1em;
-			}
-			small, small > a {
-				font-size: 9pt;
-				text-align: center;
-				text-decoration: none;
-			}
+			p,a { font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace; }
+			small, small > a { font-size: 9pt; }
 			@media (prefers-color-scheme: dark) {
 				body { background-color: #000; color: #ccc; }
 				a, a:visited { color: #0f0; }
+				pre { border-color: #ccc; }
 			}
 		</style>
 	</head>
