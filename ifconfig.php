@@ -65,6 +65,7 @@ elseif (isset($query) && (($query=="text") || ($query=="all"))) {
 		<title>{$site_title}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 		<style>
+			pre { padding: 0.5rem; border: 1px solid black; }
 			p,a {
 				font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 				line-height: 1em;
@@ -79,7 +80,7 @@ elseif (isset($query) && (($query=="text") || ($query=="all"))) {
 	</head>
 	<body>
 	<nav>
-		<a href="/">home</a> &middot;
+		<a href="/">html</a> &middot;
 		<a href="/?q=text">text</a> &middot;
 		<a href="/?q=xml">xml</a> &middot;
 		<a href="/?q=ip">ip</a> &middot;
@@ -91,6 +92,16 @@ elseif (isset($query) && (($query=="text") || ($query=="all"))) {
 	foreach($user as $key => $value) {
 		echo '	<p id="'.$key.'">'.$key.': '.$value.'</p>'."\n";
 	}
+	
+	echo <<<EOD
+	<pre><code># Curl Commands:
+	curl -L -X GET https://ip.cleberg.net
+	curl -L -X GET https://ip.cleberg.net/\?q\=text
+	curl -L -X GET https://ip.cleberg.net/\?q\=xml
+	curl -L -X GET https://ip.cleberg.net/\?q\=ip
+	curl -L -X GET https://ip.cleberg.net/\?q\=ua
+	</code></pre>
+	EOD;
 
 	$date = date("Y");
 	echo <<<EOD
