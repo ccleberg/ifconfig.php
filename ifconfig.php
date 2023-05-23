@@ -70,14 +70,14 @@ elseif (isset($query) && (($query=="text") || ($query=="all"))) {
 				font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 				line-height: 1em;
 			}
-			.small, .small > a {
+			small, small > a {
 				font-size: 9pt;
 				text-align: center;
 				text-decoration: none;
 			}
 			@media (prefers-color-scheme: dark) {
-  				body { background-color: #000; color: #ccc; }
-  				a, a:visited { color: #0f0; }
+				body { background-color: #000; color: #ccc; }
+				a, a:visited { color: #0f0; }
 			}
 		</style>
 	</head>
