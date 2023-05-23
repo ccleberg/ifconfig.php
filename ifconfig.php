@@ -72,9 +72,12 @@ elseif (isset($query) && (($query=="text") || ($query=="all"))) {
 			}
 			.small, .small > a {
 				font-size: 9pt;
-				color: #777;
 				text-align: center;
 				text-decoration: none;
+			}
+			@media (prefers-color-scheme: dark) {
+  				body { background-color: #000; color: #ccc; }
+  				a, a:visited { color: #0f0; }
 			}
 		</style>
 	</head>
@@ -106,8 +109,8 @@ elseif (isset($query) && (($query=="text") || ($query=="all"))) {
 	$date = date("Y");
 	echo <<<EOD
 	<br>
-	<p class="small">Copyright &copy; {$date} <a href="{$site_owner_url}">{$site_owner_name}</a>.<br/>
-	<a target="_blank" rel="noreferrer" href="{$source_repository}">Source Code</a></p>
+	<p><small>Copyright &copy; {$date} <a href="{$site_owner_url}">{$site_owner_name}</a>.
+	<br><a target="_blank" rel="noreferrer" href="{$source_repository}">Source Code</a></small></p>
 	</body>
 	</html>
 	EOD;
