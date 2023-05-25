@@ -44,7 +44,8 @@ $user = array(
         'continent_name' => $geo['continent']['names']['en'],
         'country_code'   => $geo['country']['geoname_id'],
         'country_iso'    => $geo['country']['iso_code'],
-        'country_name'   => $geo['country']['names']['en']
+        'country_name'   => $geo['country']['names']['en'],
+        'time_zone'      => $geo['location']['time_zone']
 	);
 
 // Check request (ex. ifconfig.php?q=ip)
