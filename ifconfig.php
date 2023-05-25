@@ -65,6 +65,7 @@ elseif (isset($query) && (($query=="text") || ($query=="all"))) {
 		<title>{$site_title}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 		<style>
+		  body { overflow-wrap: break-word; }
 			pre { padding: 0.5rem; border: 1px solid black; }
 			p,a { font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace; }
 			small, small > a { font-size: 9pt; }
@@ -89,7 +90,7 @@ elseif (isset($query) && (($query=="text") || ($query=="all"))) {
 	foreach($user as $key => $value) {
 		echo '	<p id="'.$key.'">'.$key.': '.$value.'</p>'."\n";
 	}
-	
+
 	echo <<<EOD
 	<pre><code># Curl Commands:
 	curl -L -X GET https://ip.cleberg.net
