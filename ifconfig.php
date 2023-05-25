@@ -1,28 +1,50 @@
 <?php
 
+require 'vendor/autoload.php';
+use MaxMind\Db\Reader;
+
+function loadGeo(string $ipAddress): ?array
+{
+        $databaseFile = 'GeoLite2-City.mmdb';
+        $reader = new Reader($databaseFile);
+        $results = $reader->get($ipAddress);
+        $reader->close();
+
+        return $results;
+}
+
+// Set top-level variables for HTML
 $site_title = 'ip.cleberg.net';
 $site_owner_name = 'Christian Cleberg';
 $site_owner_url = 'https://cleberg.net';
 $source_repository = 'https://git.sr.ht/~cmc/ifconfig.php';
 
+// Extract geolocation
+$geo = loadGeo($_SERVER['REMOTE_ADDR']);
+
 // Create array of values
 $user = array(
-        'ip' 	     => $_SERVER['REMOTE_ADDR'],
-	'host' 	     => (isset($_SERVER['REMOTE_ADDR']) ? gethostbyaddr($_SERVER['REMOTE_ADDR']) : ""),
-	'port' 	     => $_SERVER['REMOTE_PORT'],
-	'ua' 	     => $_SERVER['HTTP_USER_AGENT'],
-	'lang' 	     => $_SERVER['HTTP_ACCEPT_LANGUAGE'],
-	'mime' 	     => $_SERVER['HTTP_ACCEPT'],
-	'encoding'   => $_SERVER['HTTP_ACCEPT_ENCODING'],
-	'charset'    => $_SERVER['HTTP_ACCEPT_CHARSET'],
-	'connection' => $_SERVER['HTTP_CONNECTION'],
-	'cache'      => $_SERVER['HTTP_CACHE_CONTROL'],
-	'cookie'     => $_SERVER['HTTP_COOKIE'],
-	'referer'    => $_SERVER['HTTP_REFERER'],
-	'real_ip'    => $_SERVER['HTTP_X_REAL_IP'],
-	'fwd_ip'     => $_SERVER['HTTP_X_FORWARDED_FOR'],
-	'fwd_host'   => (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? gethostbyaddr($_SERVER['HTTP_X_FORWARDED_FOR']) : ""),
-	'dnt' 	     => $_SERVER['HTTP_DNT']
+        'ip' 	         => $_SERVER['REMOTE_ADDR'],
+	'host' 	         => (isset($_SERVER['REMOTE_ADDR']) ? gethostbyaddr($_SERVER['REMOTE_ADDR']) : ""),
+	'port' 	         => $_SERVER['REMOTE_PORT'],
+	'ua' 	         => $_SERVER['HTTP_USER_AGENT'],
+	'lang' 	         => $_SERVER['HTTP_ACCEPT_LANGUAGE'],
+	'mime' 	         => $_SERVER['HTTP_ACCEPT'],
+	'encoding'       => $_SERVER['HTTP_ACCEPT_ENCODING'],
+	'charset'        => $_SERVER['HTTP_ACCEPT_CHARSET'],
+	'connection'     => $_SERVER['HTTP_CONNECTION'],
+	'cache'          => $_SERVER['HTTP_CACHE_CONTROL'],
+	'cookie'         => $_SERVER['HTTP_COOKIE'],
+	'referer'        => $_SERVER['HTTP_REFERER'],
+	'real_ip'        => $_SERVER['HTTP_X_REAL_IP'],
+	'fwd_ip'         => $_SERVER['HTTP_X_FORWARDED_FOR'],
+	'fwd_host'       => (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? gethostbyaddr($_SERVER['HTTP_X_FORWARDED_FOR']) : ""),
+	'dnt' 	         => $_SERVER['HTTP_DNT'],
+        'continent_code' => $geo['continent']['code'],
+        'continent_name' => $geo['continent']['names']['en'],
+        'country_code'   => $geo['country']['geoname_id'],
+        'country_iso'    => $geo['country']['iso_code'],
+        'country_name'   => $geo['country']['names']['en']
 	);
 
 // Check request (ex. ifconfig.php?q=ip)
@@ -104,7 +126,7 @@ elseif (isset($query) && (($query=="text") || ($query=="all"))) {
 	$date = date("Y");
 	echo <<<EOD
 	<br>
-	<p><small>Copyright &copy; {$date} <a href="{$site_owner_url}">{$site_owner_name}</a>.
+	<p><small>Copyright &copy; {$date} <a href="{$site_owner_url}">{$site_owner_name}</a>
 	<br><a target="_blank" rel="noreferrer" href="{$source_repository}">Source Code</a></small></p>
 	</body>
 	</html>
