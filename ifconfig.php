@@ -14,9 +14,9 @@ function loadGeo(string $ipAddress): ?array
 }
 
 // Set top-level variables for HTML
-$site_title = 'ip.cleberg.net';
+$site_title = 'ip.cmc.pub';
 $site_owner_name = 'Christian Cleberg';
-$site_owner_url = 'https://cleberg.net';
+$site_owner_url = 'https://cmc.pub';
 $source_repository = 'https://git.sr.ht/~cmc/ifconfig.php';
 
 // Extract geolocation
@@ -116,11 +116,11 @@ elseif (isset($query) && (($query=="text") || ($query=="all"))) {
 
 	echo <<<EOD
 	<pre><code># Curl Commands:
-	curl -L -X GET https://ip.cleberg.net
-	curl -L -X GET https://ip.cleberg.net/\?q\=text
-	curl -L -X GET https://ip.cleberg.net/\?q\=xml
-	curl -L -X GET https://ip.cleberg.net/\?q\=ip
-	curl -L -X GET https://ip.cleberg.net/\?q\=ua
+	curl -L -X GET https://ip.cmc.pub
+	curl -L -X GET https://ip.cmc.pub/\?q\=text
+	curl -L -X GET https://ip.cmc.pub/\?q\=xml
+	curl -L -X GET https://ip.cmc.pub/\?q\=ip
+	curl -L -X GET https://ip.cmc.pub/\?q\=ua
 	</code></pre>
 	EOD;
 
