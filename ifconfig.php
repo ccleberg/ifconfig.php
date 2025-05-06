@@ -17,7 +17,7 @@ function loadGeo(string $ipAddress): ?array
 $site_title = 'ip.cmc.pub';
 $site_owner_name = 'Christian Cleberg';
 $site_owner_url = 'https://cmc.pub';
-$source_repository = 'https://git.sr.ht/~cmc/ifconfig.php';
+$source_repository = 'https://github.com/ccleberg/ifconfig.php';
 
 // Extract geolocation
 $geo = loadGeo($_SERVER['REMOTE_ADDR']);
